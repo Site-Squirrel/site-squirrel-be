@@ -1,0 +1,2 @@
+class ReservationDay < ApplicationRecord
+end
