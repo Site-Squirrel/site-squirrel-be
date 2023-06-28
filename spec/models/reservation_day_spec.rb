@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ReservationDay, type: :model do
   describe "relationships" do
-    it { should belong_to :trips }
+    it { should belong_to :trip }
   end
 
   describe "validations" do
