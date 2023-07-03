@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
       user.save!
       render json: UserSerializer.new(user), status: 201
     else
-      render json: ErrorSerializer.new("Passwords do not match").invalid_request, status: 400
+      render json: ErrorSerializer.new('Passwords do not match').invalid_request, status: 400
     end
   end
 

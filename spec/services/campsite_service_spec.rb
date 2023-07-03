@@ -1,20 +1,20 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe CampsiteService do
   before(:each) do
-    @service = CampsiteService.new("906")
+    @service = CampsiteService.new('906')
   end
 
-  describe "exists and has an api call", :vcr do
-    it "is a service" do
+  describe 'exists and has an api call', :vcr do
+    it 'is a service' do
       expect(@service).to be_a(CampsiteService)
     end
 
-    it "has a connection to faraday" do
+    it 'has a connection to faraday' do
       expect(@service.conn).to be_a(Faraday::Connection)
     end
 
-    it "returns a hash of campground availability data" do
+    it 'returns a hash of campground availability data' do
       result = @service.get_campsite_attributes
 
       expect(result.first).to have_key(:CampsiteID)
