@@ -78,3 +78,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data('NP_KEY') { ENV["NP_KEY"] }
 end
+
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end
