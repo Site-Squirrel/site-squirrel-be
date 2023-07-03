@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ridb.recreation.gov/api/v1/campsites/906?apikey=NP_KEY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.5
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - CloudFront
+      Date:
+      - Fri, 30 Jun 2023 19:15:46 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; always
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 e5778a61da2e928608d7fdc9242d1f8e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN52-P3
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Amz-Cf-Id:
+      - c4ckP45L-gRgQx_Ru0TSYFN0xJIhIpsdYTXn7nZfUJo0CQwTS9pLtA==
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"ATTRIBUTES":[{"AttributeName":"Capacity/Size Rating","AttributeValue":"Single"},{"AttributeName":"Checkin
+        Time","AttributeValue":"12:00 PM"},{"AttributeName":"Campfire Allowed","AttributeValue":"Yes"},{"AttributeName":"Checkout
+        Time","AttributeValue":"12:00 PM"},{"AttributeName":"Pets Allowed","AttributeValue":"Yes"},{"AttributeName":"Shade","AttributeValue":"Yes"},{"AttributeName":"Driveway
+        Length","AttributeValue":"0"},{"AttributeName":"Site Width","AttributeValue":"0"},{"AttributeName":"Max
+        Num of Vehicles","AttributeValue":"2"},{"AttributeName":"Site Length","AttributeValue":"0"},{"AttributeName":"IS
+        EQUIPMENT MANDATORY","AttributeValue":"true"},{"AttributeName":"Max Vehicle
+        Length","AttributeValue":"18"},{"AttributeName":"Driveway Surface","AttributeValue":"Paved"},{"AttributeName":"Driveway
+        Grade","AttributeValue":"N/A"},{"AttributeName":"Driveway Entry","AttributeValue":"Back-In"},{"AttributeName":"Placed
+        on Map","AttributeValue":"1"},{"AttributeName":"Max Num of People","AttributeValue":"6"}],"CampsiteAccessible":false,"CampsiteID":"906","CampsiteLatitude":37.739557173,"CampsiteLongitude":-119.566440377,"CampsiteName":"003","CampsiteReservable":true,"CampsiteType":"STANDARD
+        NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"Yosemite
+        National Park - Daniel Kydd","Description":"Parking pad 03","EmbedCode":"","EntityID":"906","EntityMediaID":"67d5a3cc-8446-4b1b-a653-73ed1eb4a519","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Parking
+        pad.","URL":"https://cdn.recreation.gov/public/2020/03/06/23/07/906_c910dbcf-8c4f-410c-9f80-61398f55d695_700.jpg","Width":700},{"Credits":"Yosemite
+        National Park - Daniel Kydd","Description":"Campsite 3.","EmbedCode":"","EntityID":"906","EntityMediaID":"8c3ce994-fbbd-4558-8904-53199cc1e284","EntityType":"Campsite","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Site
+        3.","URL":"https://cdn.recreation.gov/public/2020/03/06/23/07/906_3e1aaf57-0441-489f-b200-0c9103b2e27d_700.jpg","Width":700}],"FacilityID":"232450","LastUpdatedDate":"2022-06-29","Loop":"Lower
+        Pines","PERMITTEDEQUIPMENT":[{"EquipmentName":"Tent","MaxLength":0},{"EquipmentName":"Trailer","MaxLength":12},{"EquipmentName":"PICKUP
+        CAMPER","MaxLength":18},{"EquipmentName":"POP UP","MaxLength":12},{"EquipmentName":"CARAVAN/CAMPER
+        VAN","MaxLength":18},{"EquipmentName":"RV","MaxLength":18}],"TypeOfUse":"Overnight"}]
+
+        '
+  recorded_at: Fri, 30 Jun 2023 19:15:46 GMT
+recorded_with: VCR 6.1.0
