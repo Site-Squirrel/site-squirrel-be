@@ -15,6 +15,6 @@ class AvailabilityService
   end
 
   def conn
-    Faraday.new(url: "https://www.recreation.gov")
+    Faraday.new(url: 'https://www.recreation.gov')
   end
 end

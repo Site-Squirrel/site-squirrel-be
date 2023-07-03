@@ -1,20 +1,20 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe AvailabilityService do
   before(:each) do
-    @service = AvailabilityService.new(232450, "2023-10-01")
+    @service = AvailabilityService.new(232_450, '2023-10-01')
   end
 
-  describe "exists and has an api call", :vcr do
-    it "is a service" do
+  describe 'exists and has an api call', :vcr do
+    it 'is a service' do
       expect(@service).to be_a(AvailabilityService)
     end
 
-    it "has a connection to faraday" do
+    it 'has a connection to faraday' do
       expect(@service.conn).to be_a(Faraday::Connection)
     end
 
-    it "returns a hash of campground availability data" do
+    it 'returns a hash of campground availability data' do
       result = @service.get_availability
 
       expect(result).to be_a(Hash)

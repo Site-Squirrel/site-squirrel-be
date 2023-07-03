@@ -13,6 +13,6 @@ class CampsiteService
   end
 
   def conn
-    Faraday.new(url: "https://ridb.recreation.gov/")
+    Faraday.new(url: 'https://ridb.recreation.gov/')
   end
 end
