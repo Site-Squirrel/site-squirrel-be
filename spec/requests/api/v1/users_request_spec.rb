@@ -15,6 +15,8 @@ RSpec.describe 'User Request Spec' do
         'name': 'Matt E'
       }
 
+      expect(User.all.count).to eq(0)
+
       post '/api/v1/users', headers:, params: JSON.generate(body)
 
       user = JSON.parse(response.body, symbolize_names: true)
@@ -28,6 +30,7 @@ RSpec.describe 'User Request Spec' do
       expect(user[:data][:attributes][:email]).to eq(body[:email])
       expect(user[:data][:attributes][:phone]).to eq(body[:phone])
       expect(user[:data][:attributes][:role]).to eq(0)
+      expect(User.all.count).to eq(1)
     end
 
     it 'shows an error if creation is unsuccessful due to a missing field' do
