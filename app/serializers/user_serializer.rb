@@ -4,4 +4,5 @@ class UserSerializer
 
   # attributes :trips do |object|
   #   TripSerializer.new(object.trips)
+  # end
 end
