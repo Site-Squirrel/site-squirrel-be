@@ -9,6 +9,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find(params[:id])
+    render json: UserSerializer.new(user), status: 200 if user.update!(user_params)
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    render json: DestroySerializer.new("Record successfully destroyed").destroyed_successfully, status: 200 if user.destroy!
+  end
+
   private
 
   def user_params
