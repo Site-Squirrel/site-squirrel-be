@@ -16,7 +16,10 @@ class Api::V1::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    render json: DestroySerializer.new("Record successfully destroyed").destroyed_successfully, status: 200 if user.destroy!
+    return unless user.destroy!
+
+    render json: DestroySerializer.new('Record successfully destroyed').destroyed_successfully,
+           status: 200
   end
 
   private
