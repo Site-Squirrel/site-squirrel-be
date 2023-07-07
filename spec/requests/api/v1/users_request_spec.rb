@@ -112,20 +112,20 @@ RSpec.describe 'User Request Spec' do
     end
   end
 
-  describe "User Edit" do
+  describe 'User Edit' do
     it "can edit a user's attributes and return the updated user info" do
       data_keys = %i[id type attributes]
       attribute_keys = %i[name email phone role]
-      user_1 = create(:user, email: "test@example.com")
+      user_1 = create(:user, email: 'test@example.com')
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      
+
       user_params = {
-        email: "test1@xample.com"
+        email: 'test1@xample.com'
       }
 
       patch "/api/v1/users/#{user_1.id}", headers:, params: JSON.generate(user_params)
       user = JSON.parse(response.body, symbolize_names: true)
-      
+
       expect(response).to be_successful
       expect(response.status).to eq(200)
       expect(user[:data].keys).to eq(data_keys)
@@ -135,13 +135,13 @@ RSpec.describe 'User Request Spec' do
       expect(user[:data][:attributes][:email]).to eq(user_params[:email])
     end
 
-    it "renders a serialized error if the update is unsuccessful due to missing inputs" do
-      user_1 = create(:user, email: "test@example.com")
+    it 'renders a serialized error if the update is unsuccessful due to missing inputs' do
+      user_1 = create(:user, email: 'test@example.com')
       error_keys = %i[status title detail]
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      
+
       user_params = {
-        email: ""
+        email: ''
       }
 
       patch "/api/v1/users/#{user_1.id}", headers:, params: JSON.generate(user_params)
@@ -156,16 +156,16 @@ RSpec.describe 'User Request Spec' do
       expect(error[:errors].first[:detail]).to eq("Validation failed: Email can't be blank")
     end
 
-    it "renders a serialized error if the update is unsuccessful due to the user not being found" do
-      user_1 = create(:user, email: "test@example.com")
+    it 'renders a serialized error if the update is unsuccessful due to the user not being found' do
+      user_1 = create(:user, email: 'test@example.com')
       error_keys = %i[status title detail]
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      
+
       user_params = {
-        email: "test1@example.com"
+        email: 'test1@example.com'
       }
 
-      patch "/api/v1/users/15", headers:, params: JSON.generate(user_params)
+      patch '/api/v1/users/15', headers:, params: JSON.generate(user_params)
       error = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to_not be_successful
@@ -179,31 +179,31 @@ RSpec.describe 'User Request Spec' do
     end
   end
 
-  describe "User delete" do
-    it "can destroy a user and render a successful message" do
+  describe 'User delete' do
+    it 'can destroy a user and render a successful message' do
       user = create(:user)
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      
+
       expect(User.count).to eq(1)
 
-      delete "/api/v1/users/#{user.id}", headers: headers
+      delete("/api/v1/users/#{user.id}", headers:)
 
       message = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
       expect(User.count).to eq(0)
-      expect(message[:message]).to eq("Record successfully destroyed")
-      expect{User.find(user.id)}.to raise_error(ActiveRecord::RecordNotFound)
+      expect(message[:message]).to eq('Record successfully destroyed')
+      expect { User.find(user.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it "renders a serialized error if the destroy action is unsuccessful" do
+    it 'renders a serialized error if the destroy action is unsuccessful' do
       user = create(:user)
       error_keys = %i[status title detail]
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      
+
       expect(User.count).to eq(1)
 
-      delete "/api/v1/users/15", headers: headers
+      delete('/api/v1/users/15', headers:)
 
       error = JSON.parse(response.body, symbolize_names: true)
 
