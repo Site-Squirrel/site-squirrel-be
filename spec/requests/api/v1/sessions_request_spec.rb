@@ -5,7 +5,7 @@ RSpec.describe 'Sessions' do
     it 'authenticates a user and returns the user object if successful' do
       user_1 = create(:user, email: 'test@example.com', password: 'password')
       data_keys = %i[id type attributes]
-      attribute_keys = %i[name email phone role]
+      attribute_keys = %i[name email phone role trips]
       headers = { 'CONTENT_TYPE' => 'application/json' }
 
       body =  {
