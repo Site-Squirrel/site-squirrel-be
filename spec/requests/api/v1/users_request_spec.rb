@@ -4,7 +4,7 @@ RSpec.describe 'User Request Spec' do
   describe 'User Create' do
     it 'can create a new user and render the user object' do
       data_keys = %i[id type attributes]
-      attribute_keys = %i[name email phone role]
+      attribute_keys = %i[name email phone role trips]
       headers = { 'CONTENT_TYPE' => 'application/json' }
       body =  {
 
@@ -115,7 +115,7 @@ RSpec.describe 'User Request Spec' do
   describe 'User Edit' do
     it "can edit a user's attributes and return the updated user info" do
       data_keys = %i[id type attributes]
-      attribute_keys = %i[name email phone role]
+      attribute_keys = %i[name email phone role trips]
       user_1 = create(:user, email: 'test@example.com')
       headers = { 'CONTENT_TYPE' => 'application/json' }
 
