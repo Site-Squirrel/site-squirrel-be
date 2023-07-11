@@ -75,4 +75,76 @@ RSpec.describe "User Trips Request" do
       expect(error[:errors].first[:detail]).to eq("Couldn't find User with 'id'=15")
     end
   end
+
+  describe "User Trips create" do
+    it "can create a new trip" do
+      user_1 = create(:user)
+      trip_keys = [:id, :type, :attributes]
+      trip_attr_keys = [:name, :campground_id, :vehicle_length, :tent_site_ok, :campground_location, :start_date, :number_nights]
+      headers = { 'CONTENT_TYPE' => 'application/json' }
+
+      body =  {
+
+        'name': 'My camping trip',
+        'vehicle_length': '15',
+        'tent_site_ok': true,
+        'start_date': '2024/10/07',
+        'number_nights': 2,
+        'campground_id': '123456',
+        'campground_location': '123213.23, 123232,12',
+        'user_id': "#{user_1.id}"
+              }
+
+      expect(Trip.count).to eq(0) 
+      expect(ReservationDay.count).to eq(0)       
+
+      post "/api/v1/users/#{user_1.id}/trips", headers:, params: JSON.generate(body)
+      
+      trip = JSON.parse(response.body, symbolize_names: true)
+       
+      expect(Trip.count).to eq(1)
+      expect(ReservationDay.count).to eq(2)
+      expect(response).to be_successful
+      expect(response.status).to eq(201)
+      expect(trip[:data].keys).to eq(trip_keys)
+      expect(trip[:data][:attributes][:name]).to eq(body[:name])
+      expect(trip[:data][:attributes][:campground_id]).to eq(body[:campground_id])
+      expect(trip[:data][:attributes][:vehicle_length]).to eq(body[:vehicle_length])
+      expect(trip[:data][:attributes][:tent_site_ok]).to eq(body[:tent_site_ok])
+      expect(trip[:data][:attributes][:campground_location]).to eq(body[:campground_location])
+      expect(trip[:data][:attributes][:start_date]).to eq(body[:start_date])
+      expect(trip[:data][:attributes][:number_nights]).to eq(body[:number_nights])
+    end
+
+    it "renders an error if a required field is missing" do
+      user_1 = create(:user)
+      error_keys = %i[status title detail]
+      headers = { 'CONTENT_TYPE' => 'application/json' }
+
+      body =  {
+
+        'name': '',
+        'vehicle_length': '15',
+        'tent_site_ok': true,
+        'start_date': '2024/10/07',
+        'number_nights': 2,
+        'campground_id': '123456',
+        'campground_location': '123213.23, 123232,12',
+        'user_id': "#{user_1.id}"
+              }
+
+      post "/api/v1/users/#{user_1.id}/trips", headers:, params: JSON.generate(body)
+      
+      error = JSON.parse(response.body, symbolize_names: true)
+  
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(error).to have_key(:errors)
+      expect(error[:errors]).to be_a(Array)
+      expect(error[:errors].first.keys).to eq(error_keys)
+      expect(error[:errors].first[:status]).to eq('400')
+      expect(error[:errors].first[:title]).to eq('Invalid Request')
+      expect(error[:errors].first[:detail]).to eq("Validation failed: Name can't be blank")
+    end
+  end
 end
