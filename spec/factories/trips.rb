@@ -6,6 +6,6 @@ FactoryBot.define do
     tent_site_ok { Faker::Boolean.boolean }
     campground_location { Faker::Address.latitude.to_s + ', ' + Faker::Address.longitude.to_s }
     start_date { Faker::Date.in_date_period(year: 2018) }.to_s
-    number_nights { 1 }
+    number_nights { 3 }
   end
 end
