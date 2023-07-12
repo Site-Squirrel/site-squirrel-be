@@ -5,7 +5,7 @@ class CreateReservationDays < ActiveRecord::Migration[7.0]
       t.string :loop_number
       t.string :checkout_time
       t.decimal :price
-      t.boolean :search_active
+      t.boolean :search_active, default: true
       t.string :date
 
       t.timestamps

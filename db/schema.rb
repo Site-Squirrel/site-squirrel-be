@@ -10,42 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_626_204_142) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_26_204142) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'reservation_days', force: :cascade do |t|
-    t.string 'site_number'
-    t.string 'loop_number'
-    t.string 'checkout_time'
-    t.decimal 'price'
-    t.boolean 'search_active'
-    t.string 'date'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'trip_id'
+  create_table "reservation_days", force: :cascade do |t|
+    t.string "site_number"
+    t.string "loop_number"
+    t.string "checkout_time"
+    t.decimal "price"
+    t.boolean "search_active", default: true
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "trip_id"
   end
 
-  create_table 'trips', force: :cascade do |t|
-    t.string 'name'
-    t.string 'campground_id'
-    t.string 'vehicle_length'
-    t.boolean 'tent_site_ok'
-    t.string 'campground_location'
-    t.string 'start_date'
-    t.integer 'number_nights'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'user_id'
+  create_table "trips", force: :cascade do |t|
+    t.string "name"
+    t.string "campground_id"
+    t.string "vehicle_length"
+    t.boolean "tent_site_ok"
+    t.string "campground_location"
+    t.string "start_date"
+    t.integer "number_nights"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.string 'password_digest'
-    t.integer 'role', default: 0
-    t.string 'phone'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.integer "role", default: 0
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
 end
