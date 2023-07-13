@@ -16,11 +16,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_204142) do
 
   create_table "reservation_days", force: :cascade do |t|
     t.string "site_number"
-    t.string "loop_number"
+    t.string "loop"
     t.string "checkout_time"
-    t.decimal "price"
+    t.string "checkin_time"
     t.boolean "search_active", default: true
     t.string "date"
+    t.string "api_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "trip_id"
