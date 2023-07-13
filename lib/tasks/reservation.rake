@@ -1,22 +1,31 @@
 namespace :reservation do
   desc "Make API calls to find availability for active reservation days"
   task find_reservations: :environment do
-    # Get all active reservation days (to be refactored into model method)
-    # IE Trip._get_active_res_days
-    # active_trips = Trip.joins(:reservation_days).where("search_active = true")
+    #Write an active record query for the model that only gets trips with at least one active day
     Trip.all.each do |trip|
       date = trip.start_date.to_date
       availability = AvailabilityService.new(trip.campground_id, Date.new(date.year, date.month, 1)).get_availability
       trip.reservation_days.each do |day|
         availability[:campsites].keys.each do |campsite|
-          if availability[:campsites][campsite][:availabilities][day.date.concat("T00:00:00Z").to_sym] != "Reserved" 
-            puts "this is working"
+          binding.pry
+          if availability[:campsites][campsite][:availabilities][(day.date+"T00:00:00Z").to_sym] == "Available" 
             #Figure out what the string is for an actual available campground  and make the above line equal it
-            #edit the day to add the campsites site number, loop number, checkout time, price.
-            #Change the search_active attribute to false
-            #Email/ text the user with the details and a link to the reservation site
-            #Probably going to make another request to the campground attributes api for the details.
-            #Implement a counter and only make calls if its under the counter(where to put the constant/variable)
+            puts "Test passed, I've found an open campsite"
+            campsite_id = campsite.to_s
+            details = CampsiteService.new(campsite_id).get_campsite_attributes
+            day.update(
+              site_number: details.first[:CampsiteName],
+              loop: details.first[:Loop],
+              checkin_time: details.first[:ATTRIBUTES][1][:AttributeValue],
+              checkout_time: details.first[:ATTRIBUTES][3][:AttributeValue],
+              api_id: details.first[:CampsiteID],  
+              search_active: false)
+              binding.pry
+              # Email the user with the links to the campgrounds and an explanation what to do
+            # # Example URL for campground
+            # # https://www.recreation.gov/camping/campgrounds/232450
+            # # Example URL for campsite
+            # # https://www.recreation.gov/camping/campsites/908 
           end
         end
       end
