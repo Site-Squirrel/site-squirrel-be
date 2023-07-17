@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.1'
+
+#Cron job helper
+gem 'whenever', require: false
+
 # Serializing API output
 gem 'jsonapi-serializer'
 
