@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.1'
 
+#Sending SMS
+gem 'twilio-ruby', '~> 6.3.0'
+
 #Cron job helper
 gem 'whenever', require: false
 
