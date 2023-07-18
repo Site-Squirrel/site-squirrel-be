@@ -147,4 +147,44 @@ RSpec.describe "User Trips Request" do
       expect(error[:errors].first[:detail]).to eq("Validation failed: Name can't be blank")
     end
   end
+
+  describe "User Trips Destroy" do
+    it "can delete a trip and all associated reservation days" do
+      user_1 = create(:user)
+      trip_1  = create(:trip, user_id: user_1.id)
+      day_1 = create(:reservation_day, trip_id: trip_1.id)
+ 
+      expect(Trip.count).to eq(1)
+      expect(ReservationDay.count).to eq(1)
+
+      delete "/api/v1/users/#{user_1.id}/trips/#{trip_1.id}"
+
+      message = JSON.parse(response.body, symbolize_names: true)
+   
+      expect(Trip.count).to eq(0)
+      expect(ReservationDay.count).to eq(0)
+      expect(response).to be_successful
+      expect(message[:message]).to eq('Record successfully destroyed')
+    end
+
+    it "renders an error if the user is not found" do
+      user_1 = create(:user)
+      trip_1  = create(:trip, user_id: user_1.id)
+      day_1 = create(:reservation_day, trip_id: trip_1.id)
+      error_keys = %i[status title detail]
+ 
+      delete "/api/v1/users/#{user_1.id}/trips/6"
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(error).to have_key(:errors)
+      expect(error[:errors]).to be_a(Array)
+      expect(error[:errors].first.keys).to eq(error_keys)
+      expect(error[:errors].first[:status]).to eq('400')
+      expect(error[:errors].first[:title]).to eq('Invalid Request')
+      expect(error[:errors].first[:detail]).to eq("Couldn't find Trip with 'id'=6")
+    end
+  end
 end
