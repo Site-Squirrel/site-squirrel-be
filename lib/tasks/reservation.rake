@@ -25,8 +25,9 @@ namespace :reservation do
               from = ENV['TWIL_NUM']
               to = '+19515263025'
               message = "A reservation was found on #{day.date} for campsite#{day.site_number} at loop #{day.loop}. Please head to https://www.recreation.gov/camping/campsites/#{campsite.to_s} or https://www.recreation.gov/camping/campgrounds/#{trip.campground_id} to reserve your spot."
-
+              p "A res was found"
               send_sms(from, to, message)
+              sleep(1)
               break 
           end
         end
