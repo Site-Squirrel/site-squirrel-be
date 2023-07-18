@@ -1,6 +1,9 @@
+require 'modules/twilio'
+
 namespace :reservation do
   desc "Make API calls to find availability for active reservation days"
   task find_reservations: :environment do
+    include Twilio
     Trip.all.each do |trip|
       date = trip.start_date.to_date
       availability = AvailabilityService.new(trip.campground_id, Date.new(date.year, date.month, 1)).get_availability
@@ -19,13 +22,13 @@ namespace :reservation do
               search_active: false
                       )
 
-              p "A reservation was found on #{day.date} for campsite#{day.site_number} at loop #{day.loop}. Please head to https://www.recreation.gov/camping/campsites/#{campsite.to_s} or https://www.recreation.gov/camping/campgrounds/#{trip.campground_id} to reserve your spot."
-              return        
-              # Email the user with the links to the campgrounds and an explanation what to do
-            # # Example URL for campground
-            # # https://www.recreation.gov/camping/campgrounds/232280
-            # # Example URL for campsite
-            # # https://www.recreation.gov/camping/campsites/908 
+              from = ENV['TWIL_NUM']
+              to = '+19515263025'
+              message = "A reservation was found on #{day.date} for campsite#{day.site_number} at loop #{day.loop}. Please head to https://www.recreation.gov/camping/campsites/#{campsite.to_s} or https://www.recreation.gov/camping/campgrounds/#{trip.campground_id} to reserve your spot."
+              p "A res was found"
+              send_sms(from, to, message)
+              sleep(1)
+              break 
           end
         end
       end
