@@ -18,6 +18,12 @@ class Api::V1::Users::TripsController < ApplicationController
     end
   end
 
+  def destroy
+    trip = Trip.find(params[:id])
+    trip.destroy!
+    render json: DestroySerializer.new('Record successfully destroyed').destroyed_successfully, status: 200
+  end
+
 
   private
 
