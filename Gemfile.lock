@@ -228,6 +228,9 @@ GEM
       rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
     simplecov (0.22.0)
@@ -275,6 +278,7 @@ DEPENDENCIES
   rails (~> 7.0.5)
   rspec-rails
   rubocop-rails
+  sendgrid-ruby
   shoulda-matchers
   simplecov
   twilio-ruby (~> 6.3.0)

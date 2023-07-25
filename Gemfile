@@ -6,6 +6,9 @@ ruby '3.1.1'
 #Sending SMS
 gem 'twilio-ruby', '~> 6.3.0'
 
+# Sending email
+gem 'sendgrid-ruby'
+
 #Cron job helper
 gem 'whenever', require: false
 
