@@ -5,8 +5,6 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 # Site Squirrel REST API
 
-    Destination Weather (Whether, Sweater?) is a student project for the Turing School of Software and Design Backend Software Engineering program. It demonstrates skills in consuming external APIs, creating API endpoints that return objects serialized to JSON:API spec, displaying CRUD fuctionality and showing a strong understanding of MVC and OOD principles in the context of a Ruby on Rails application.
-
 # Built With
 
   ![Ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white) 
