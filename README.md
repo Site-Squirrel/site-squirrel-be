@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Site squirrel started as a service oriented Ruby on Rails application that allows users to create trips at National Parks and other federally managed lands and recieve notifications when hard to get campsite reservations become available. Recently it was announced that after several years without it, recreation.gov will soon implement this feature natively and that it is in beta testing for several campgrounds currently. All future work on Site Squirrel will go into making it a functioning open source API, but a frontend will most likely not be implemented and new features will be limited.
