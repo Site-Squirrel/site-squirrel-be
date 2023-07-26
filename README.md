@@ -1,9 +1,10 @@
-# README
-
 Note: Site squirrel started as a service oriented Ruby on Rails application that allows users to create trips at National Parks and other federally managed lands and recieve notifications when hard to get campsite reservations become available. Recently it was announced that after several years without it, recreation.gov will soon implement this feature natively and that it is in beta testing for several campgrounds currently. All future work on Site Squirrel will go into making it a functioning open source API, but a frontend will most likely not be implemented and new features will be limited.
 
 
+# README
+
 # Site Squirrel REST API
+
 
 # Built With
 
@@ -39,27 +40,120 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Request
 
+`POST /api/v1/users`
+
+    POST /api/v1/users
+    Content-Type: application/json
+    Accept: application/json
+
+    {
+    "name" : "Bob Bobberson",
+    "email": "whatever@example.com",
+    "phone": "5555555555",
+    "password_digest": "password",
+    "password_confirmation": "password"
+    }
+
 ### Response
+
+  {
+    "data": {
+        "id": "7",
+        "type": "user",
+        "attributes": {
+            "name": "Bob Bobberson",
+            "email": "whatever@example.com",
+            "phone": "5555555555",
+            "role": 0,
+            "trips": {
+                "data": []
+            }
+        }
+    }
+  }
 
 ## Destroy a user
 
 ### Request
 
+`DELETE /api/v1/users/7`
+
 ### Response
+
+{
+    "message": "Record successfully destroyed"
+}
 
 ## Update a user
 
 ### Request
 
+`PATCH /api/v1/users/6`
+
+  PATCH /api/v1/users/6
+  Content-Type: application/json
+  Accept: application/json
+
 ### Response
+
+{
+    "data": {
+        "id": "6",
+        "type": "user",
+        "attributes": {
+            "name": "Bob Bobberson",
+            "email": "bobberson@example.com",
+            "phone": "55555555555",
+            "role": 0,
+            "trips": {
+                "data": []
+            }
+        }
+    }
+}
 
 ## Create a trip (sets up notifications)
 
 ### Request
 
+`POST /api/v1/users/6/trips`
+
+    POST /api/v1/users/6/trips
+    Content-Type: application/json
+    Accept: application/json
+
+                {
+        "name": "My camping trip",
+        "vehicle_length": "15",
+        "tent_site_ok": true,
+        "start_date": "2024-10-07",
+        "number_nights": 2,
+        "campground_id": "123456",
+        "campground_location": "123213.23, 123232,12",
+        "user_id": "6"
+              }
+
 ### Response
 
+{
+    "data": {
+        "id": "12",
+        "type": "trip",
+        "attributes": {
+            "name": "My camping trip",
+            "campground_id": "123456",
+            "vehicle_length": "15",
+            "tent_site_ok": true,
+            "campground_location": "123213.23, 123232,12",
+            "start_date": "2024-10-07",
+            "number_nights": 2
+        }
+    }
+}
+
 ## Destroy a trip
+
+
 
 ### Request
 
@@ -69,7 +163,52 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Request
 
+`GET /api/v1/users/6/trips`
+
 ### Response
+
+{
+    "data": {
+        "id": "6",
+        "type": "user",
+        "attributes": {
+            "name": "Bob Bobberson",
+            "email": "bobberson@example.com",
+            "phone": "55555555555",
+            "role": 0,
+            "trips": {
+                "data": [
+                    {
+                        "id": "12",
+                        "type": "trip",
+                        "attributes": {
+                            "name": "My camping trip",
+                            "campground_id": "123456",
+                            "vehicle_length": "15",
+                            "tent_site_ok": true,
+                            "campground_location": "123213.23, 123232,12",
+                            "start_date": "2024-10-07",
+                            "number_nights": 2
+                        }
+                    },
+                    {
+                        "id": "13",
+                        "type": "trip",
+                        "attributes": {
+                            "name": "My camping trip 2",
+                            "campground_id": "123456",
+                            "vehicle_length": "15",
+                            "tent_site_ok": true,
+                            "campground_location": "123213.23, 123232,12",
+                            "start_date": "2024-10-07",
+                            "number_nights": 2
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
 
 ## Create a session (no longer necessary as an API only application)
 
