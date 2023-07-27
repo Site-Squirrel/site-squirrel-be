@@ -1,4 +1,4 @@
-Note: Site squirrel started as a service oriented Ruby on Rails application that allows users to create trips at National Parks and other federally managed lands and recieve notifications when hard to get campsite reservations become available. Recently it was announced that after several years without it, recreation.gov will soon implement this feature natively and that it is in beta testing for several campgrounds currently. All future work on Site Squirrel will go into making it a functioning open source API, but a frontend will most likely not be implemented and new features will be limited.
+Note: Site squirrel started as a service oriented Ruby on Rails application that allows users to create trips at National Parks and other federally managed lands and recieve notifications when hard to get campsite reservations become available. Recently it was announced that after several years without it, recreation.gov will soon implement this feature natively and that it is in beta testing for several campgrounds currently. New features, frontend work, additional CRUD functionality and deployment will be discontinued, but the application can still be forked / cloned and ran locally using local host and rails console/Postman for creating trips.
 
 
 # README
@@ -56,6 +56,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Response
 
+<pre>
   {
     "data": {
         "id": "7",
@@ -71,6 +72,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
         }
     }
   }
+</pre>
 
 ## Destroy a user
 
@@ -80,9 +82,11 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Response
 
+<pre>
 {
     "message": "Record successfully destroyed"
 }
+</pre>
 
 ## Update a user
 
@@ -96,6 +100,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Response
 
+<pre>
 {
     "data": {
         "id": "6",
@@ -111,6 +116,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
         }
     }
 }
+</pre>
 
 ## Create a trip (sets up notifications)
 
@@ -122,7 +128,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
     Content-Type: application/json
     Accept: application/json
 
-                {
+            {
         "name": "My camping trip",
         "vehicle_length": "15",
         "tent_site_ok": true,
@@ -135,6 +141,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Response
 
+<pre>
 {
     "data": {
         "id": "12",
@@ -150,14 +157,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
         }
     }
 }
-
-## Destroy a trip
-
-
-
-### Request
-
-### Response
+</pre>
 
 ## Get all of a user's trips
 
@@ -167,6 +167,7 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
 
 ### Response
 
+<pre>
 {
     "data": {
         "id": "6",
@@ -209,6 +210,8 @@ Note: Site squirrel started as a service oriented Ruby on Rails application that
         }
     }
 }
+
+</pre>
 
 ## Create a session (no longer necessary as an API only application)
 
