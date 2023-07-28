@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.1'
 
-#Sending SMS
+# Sending SMS
 gem 'twilio-ruby', '~> 6.3.0'
 
 # Sending email
 gem 'sendgrid-ruby'
 
-#Cron job helper
+# Cron job helper
 gem 'whenever', require: false
 
 # Serializing API output
@@ -58,7 +58,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'main'
   gem 'pry'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
