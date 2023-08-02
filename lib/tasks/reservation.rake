@@ -4,6 +4,7 @@ namespace :reservation do
   desc 'Make API calls to find availability for active reservation days'
   task find_reservations: :environment do
     include Email
+    puts "Ran rake task"
     Trip.all.each do |trip|
       date = trip.start_date.to_date
       availability = AvailabilityService.new(trip.campground_id, Date.new(date.year, date.month, 1)).get_availability
