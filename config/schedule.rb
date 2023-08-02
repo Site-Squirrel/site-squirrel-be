@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.minute do
-  rake 'reservation:find_reservations'
+  rake 'reservation:find_reservations', :environment => "development"
 end
